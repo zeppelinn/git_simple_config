@@ -1,0 +1,45 @@
+注：所有命令均在普通用户下执行，不需要root
+步骤1：
+# 安装vim
+见vim/安装说明
+
+步骤2：
+## 初期简单个人配置 user.name和user.email修改成自己的。
+git config --global user.name "lijun”
+git config --global user.email “467337035@qq.com"
+git config --global core.editor vim
+git config --global merge.tool vimdiff
+git config --global color.ui auto
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lgall "log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lgd "log --color --graph --decorate --oneline"
+git config --global alias.lgt "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cd) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# for short cmd
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+
+# 正确显示文件的中文名，而不显示八进制文件名
+git config --global core.quotepath false
+
+# 不保留冲突解决产生的*.orig文件
+git config --global mergetool.keepBackup false
+
+步骤3：
+# 生成自己的公私钥。公钥用于代码权限的赋予
+ssh-keygen -t dsa
+运行上面的命令一路回车或者根据需要加密码
+在~/目录下会生成一个.ssh目录，目录下id_dsa为你的私钥 id_dsa.pub为你的公钥。
+私钥自己保存不要外泄，公钥复制出来，改名成自己的用户名.pub发给项目管理员。
+
+# gitlab需要添加配置
+# 密码缓存
+Linux:
+git config --global credential.helper 'cache --timeout=3600'
+gitbash:
+git config --global credential.helper wincred
+
+# https
+git config --global http.sslVerify false
